@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jalawe Learning Hub - Sign In</title>
+
+  <style>
+    :root {
+      --blue: #1a4b8c;
+      --blue-dark: #0f2d5a;
+      --green: #2e8b57;
+      --green-light: #3cb371;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
+      --text: #1a1a1a;
+      --text-light: #5a6a7a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Arial, sans-serif;
+      background: #e8eef5;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Phone */
+
+    .phone {
+      width: 390px;
+      min-height: 780px;
+      background: var(--off-white);
+      border-radius: 32px;
+      border: 8px solid #1a1a1a;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Status Bar */
+
+    .status-bar {
+      height: 28px;
+      background: var(--blue-dark);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 12px;
+    }
+
+    /* Main */
+
+    .signin {
+      min-height: 744px;
+      padding: 40px 24px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Logo */
+
+    .logo-box {
+      width: 76px;
+      height: 76px;
+      background: var(--blue);
+      border-radius: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 20px rgba(26,75,140,0.2);
+    }
+
+    .title {
+      text-align: center;
+      color: var(--blue-dark);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .title span {
+      color: var(--green);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-top: 7px;
+      margin-bottom: 28px;
+    }
+
+    /* Form */
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid #dce3eb;
+      border-radius: 12px;
+      background: white;
+      padding: 0 15px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
+    }
+
+    /* Password */
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 50px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 5px;
+      top: 4px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    /* Sign In */
+
+    .signin-btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 4px;
+      border: none;
+      border-radius: 12px;
+      background: var(--green);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .signin-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Divider */
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      color: var(--text-light);
+      font-size: 11px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: #dce3eb;
+      flex: 1;
+    }
+
+    /* Guest */
+
+    .guest-btn {
+      width: 100%;
+      height: 52px;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      background: white;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .guest-btn:active {
+      transform: scale(0.98);
+    }
+
+    .guest-note {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 11px;
+      line-height: 1.5;
+      margin: 10px 15px 0;
+    }
+
+    /* Account */
+
+    .account-text {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 13px;
+      margin-top: 22px;
+    }
+
+    .account-text a {
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 430px) {
+
+      body {
+        background: var(--off-white);
+        align-items: flex-start;
+      }
+
+      .phone {
+        width: 100%;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .signin {
+        min-height: calc(100vh - 28px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="phone">
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span>9:41</span>
+      <span>📶 🔋</span>
+    </div>
+
+    <!-- Sign In -->
+    <main class="signin">
+
+      <div class="logo-box">
+        📚
+      </div>
+
+      <h1 class="title">
+        Welcome to <span>Jalawe</span>
+      </h1>
+
+      <p class="subtitle">
+        Learn. Grow. Anywhere.
+      </p>
+
+      <form id="loginForm">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Your Name</label>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <!-- Email / Phone -->
+        <div class="form-group">
+          <label for="contact">Email or Phone Number</label>
+
+          <input
+            type="text"
+            id="contact"
+            placeholder="Enter email or phone number"
+            required
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+
+          <label for="password">Password</label>
+
+          <div class="password-wrapper">
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="togglePassword">
+              👁️
+            </button>
+
+          </div>
+
+        </div>
+
+        <button type="submit" class="signin-btn">
+          Sign In
+        </button>
+
+      </form>
+
+      <!-- OR -->
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <!-- Guest -->
+
+      <button class="guest-btn" id="guestBtn">
+        👤 Continue Without Signing In
+      </button>
+
+      <p class="guest-note">
+        You can access lessons, subjects and practice materials
+        without creating an account.
+      </p>
+
+      <!-- Create Account -->
+
+      <p class="account-text">
+        Don't have an account?
+        <a href="#">Create Account</a>
+      </p>
+
+    </main>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       PASSWORD VISIBILITY
+    ========================= */
+
+    const password = document.getElementById("password");
+    const togglePassword =
+      document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+
+      if (password.type === "password") {
+
+        password.type = "text";
+        togglePassword.textContent = "🙈";
+
+      } else {
+
+        password.type = "password";
+        togglePassword.textContent = "👁️";
+
+      }
+
+    });
+
+
+    /* =========================
+       SIGN IN
+    ========================= */
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const contact =
+        document.getElementById("contact").value.trim();
+
+      const passwordValue =
+        document.getElementById("password").value.trim();
+
+      if (!name || !contact || !passwordValue) {
+
+        alert("Please complete all fields.");
+
+        return;
+      }
+
+      /*
+        Temporary login.
+
+        Later this is where you will connect
+        your FastAPI backend.
+      */
+
+      alert("Welcome to Jalawe, " + name + "!");
+
+      // Example:
+      // window.location.href = "home.html";
+
+    });
+
+
+    /* =========================
+       GUEST MODE
+    ========================= */
+
+    const guestBtn =
+      document.getElementById("guestBtn");
+
+    guestBtn.addEventListener("click", function() {
+
+      /*
+        Guest users don't need an account.
+
+        Later:
+        window.location.href = "home.html";
+      */
+
+      alert("Welcome to Jalawe! You are continuing as a guest.");
+
+    });
+
+  </script>
+
+</body>
+      </html>
