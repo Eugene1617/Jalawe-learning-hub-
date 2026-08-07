@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Jalawe Learning Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+  <!-- ========== HOME ========== -->
+  <div id="home" class="screen">
+    <div class="header">
+      <div class="welcome">
+        <div>
+          <h1>Welcome back, Student 👋</h1>
+          <p>Form 3 • Ready to learn</p>
+        </div>
+        <div class="avatar" onclick="showScreen('profile')" style="cursor:pointer;">👨‍🎓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="flex-between">
+        <strong>Continue Learning</strong>
+        <span style="font-size:13px; color:var(--green);">Biology • 75%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:75%;"></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:14px;" onclick="showScreen('course')">
+        Resume Lesson
+      </button>
+    </div>
+
+    <div class="card" style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="showScreen('offline')">
+      <span style="font-size:24px;">📥</span>
+      <div>
+        <strong>Offline Ready</strong>
+        <p style="font-size:13px; color:var(--text-light);">12 lessons downloaded</p>
+      </div>
+    </div>
+
+    <div class="section-title">Recommended Subjects</div>
+    <div style="display:flex; gap:10px; padding:0 16px; overflow-x:auto;">
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">🧬</div>
+        <p style="font-size:13px; font-weight:600;">Biology</p>
+      </div>
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">➗</div>
+        <p style="font-size:13px; font-weight:600;">Mathematics</p>
+      </div>
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">⚡</div>
+        <p style="font-size:13px; font-weight:600;">Physics</p>
+      </div>
+    </div>
+
+    <div class="section-title">Quick Access</div>
+    <div class="quick-grid">
+      <div class="quick-card" onclick="showScreen('subjects')">
+        <div class="icon">📚</div>
+        <p>Subjects</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('pastpapers')">
+        <div class="icon">📄</div>
+        <p>Past Papers</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('ai-teacher')">
+        <div class="icon">🧑‍🏫</div>
+        <p>AI Teacher</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('quiz')">
+        <div class="icon">❓</div>
+        <p>Quizzes</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SUBJECTS ========== -->
+  <div id="subjects" class="screen">
+    <div class="header">
+      <h1>Subjects</h1>
+      <p>Form 1 – Form 4 Library</p>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search subjects...">
+    </div>
+    <div class="subject-grid">
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🌱</div>
+        <h3>Agriculture</h3>
+        <div class="meta">Form 1-4 • 15 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:40%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🧬</div>
+        <h3>Biology</h3>
+        <div class="meta">Form 1-4 • 18 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">⚡</div>
+        <h3>Physics</h3>
+        <div class="meta">Form 1-4 • 14 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:30%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">📖</div>
+        <h3>English</h3>
+        <div class="meta">Form 1-4 • 20 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:55%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🇲🇼</div>
+        <h3>Chichewa</h3>
+        <div class="meta">Form 1-4 • 12 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:20%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">➗</div>
+        <h3>Mathematics</h3>
+        <div class="meta">Form 1-4 • 22 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">📐</div>
+        <h3>Add. Maths</h3>
+        <div class="meta">Form 3-4 • 16 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:15%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">⚗</div>
+        <h3>Chemistry</h3>
+        <div class="meta">Form 1-4 • 17 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:45%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">💼</div>
+        <h3>Business Studies</h3>
+        <div class="meta">Form 1-4 • 14 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:25%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">✝</div>
+        <h3>Bible Knowledge</h3>
+        <div class="meta">Form 1-4 • 10 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:70%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🇫🇷</div>
+        <h3>French</h3>
+        <div class="meta">Form 1-4 • 12 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COURSE / SUBJECT PAGE ========== -->
+  <div id="course" class="screen">
+    <div class="course-header">
+      <div class="flex-between">
+        <div>
+          <h1>Biology</h1>
+          <p>Form 3 • 18 Topics</p>
+        </div>
+        <div class="progress-circle">75%</div>
+      </div>
+    </div>
+
+    <div class="section-title">Topics & Lessons</div>
+    <div class="topic-list">
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>1. Cell Structure</span>
+        <span style="color:var(--green);">✓</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>2. Photosynthesis</span>
+        <span style="color:var(--green);">✓</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>3. Respiration</span>
+        <span style="color:var(--text-light);">→</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>4. Ecology</span>
+        <span style="color:var(--text-light);">→</span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; padding:8px 16px;">
+      <button class="btn btn-outline" style="flex:1;">📝 Notes</button>
+      <button class="btn btn-outline" style="flex:1;">🎥 Videos</button>
+      <button class="btn btn-outline" style="flex:1;" onclick="showScreen('pastpapers')">📄 Papers</button>
+    </div>
+
+    <div style="padding:16px;">
+      <button class="btn btn-secondary" style="margin-bottom:10px;">
+        📥 Download for Offline
+      </button>
+      <button class="btn btn-primary" onclick="showScreen('lesson')">
+        Start Learning
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== LESSON ========== -->
+  <div id="lesson" class="screen">
+    <div class="header">
+      <h1>Photosynthesis</h1>
+      <p>Biology • Lesson 2 of 18</p>
+    </div>
+
+    <div class="card" style="text-align:center; padding:30px;">
+      <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+      <p style="font-weight:600;">Video Lesson</p>
+      <p style="font-size:13px; color:var(--text-light);">8:42 min • Offline available</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px;">Key Notes</h3>
+      <p style="font-size:14px; color:var(--text-light);">
+        Photosynthesis is the process by which green plants use sunlight, water and carbon dioxide to produce glucose and oxygen.
+      </p>
+      <p style="font-size:14px; margin-top:10px;">
+        <strong>Equation:</strong><br>
+        6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
+      </p>
+    </div>
+
+    <div style="display:flex; gap:10px; padding:16px;">
+      <button class="btn btn-outline" style="flex:1;">← Previous</button>
+      <button class="btn btn-primary" style="flex:1;">Next →</button>
+    </div>
+    <div style="padding:0 16px 20px; display:flex; gap:10px;">
+      <button class="btn btn-outline" style="flex:1;">🔖 Bookmark</button>
+      <button class="btn btn-secondary" style="flex:1;" onclick="showScreen('quiz')">Take Quiz</button>
+    </div>
+  </div>
+
+  <!-- ========== AI TEACHER ========== -->
+  <div id="ai-teacher" class="screen">
+    <div class="header" style="border-radius: 0;">
+      <h1>AI Classroom Teacher</h1>
+      <p>Interactive Blackboard Assistance</p>
+    </div>
+    <div class="blackboard">
+      <h2>Welcome Class! 📝</h2>
+      <div class="chalk-text">
+        Hello! I am your Jalawe AI Assistant. Ask me any question on Biology, Mathematics, Chemistry, or Agriculture!
+      </div>
+      <div class="chalk-text" style="color: #aed581;">
+        > Ready to solve MSCE practice problems together. <span class="chalk-cursor"></span>
+      </div>
+    </div>
+    <div class="ai-input-area">
+      <div class="ai-input">
+        <input type="text" placeholder="Type your question here...">
+        <button class="ai-btn">➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PAST PAPERS ========== -->
+  <div id="pastpapers" class="screen">
+    <div class="header">
+      <h1>MSCE Past Papers</h1>
+      <p>Practice with real exam questions</p>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Biology Paper 1 (2023)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">100 Marks • 2 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Mathematics Paper 2 (2023)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">100 Marks • 2.5 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Agriculture Paper 1 (2022)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">80 Marks • 2 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== QUIZ ========== -->
+  <div id="quiz" class="screen">
+    <div class="header">
+      <h1>Biology Quiz</h1>
+      <p>Topic: Photosynthesis</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <p style="font-size: 13px; color: var(--green); font-weight: 700; margin-bottom: 6px;">Question 1 of 5</p>
+      <h3 style="margin-bottom: 16px;">What is the main byproduct of photosynthesis released into the air?</h3>
+      <div class="quiz-option">A. Carbon Dioxide</div>
+      <div class="quiz-option" style="border-color: var(--green); background: #e8f5e9;">B. Oxygen ✓</div>
+      <div class="quiz-option">C. Glucose</div>
+      <div class="quiz-option">D. Nitrogen</div>
+    </div>
+    <div style="padding: 16px;">
+      <button class="btn btn-primary" onclick="showScreen('lesson')">Submit Answer</button>
+    </div>
+  </div>
+
+  <!-- ========== PROFILE ========== -->
+  <div id="profile" class="screen">
+    <div class="profile-header">
+      <div class="profile-avatar">👨‍🎓</div>
+      <h2>Chifundo Banda</h2>
+      <p style="font-size: 13px; opacity: 0.9;">Form 3 Student • St. John's Secondary</p>
+    </div>
+    <div class="stat-row card">
+      <div class="stat">
+        <div class="num">12</div>
+        <div class="label">Completed</div>
+      </div>
+      <div class="stat">
+        <div class="num">85%</div>
+        <div class="label">Avg Score</div>
+      </div>
+      <div class="stat">
+        <div class="num">5d</div>
+        <div class="label">Streak</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Settings</h3>
+      <p style="font-size: 14px; color: var(--text-light); margin-top: 8px;">Offline Data Management</p>
+      <p style="font-size: 14px; color: var(--text-light); margin-top: 8px;">Language: English / Chichewa</p>
+    </div>
+  </div>
+
+  <!-- ========== OFFLINE ========== -->
+  <div id="offline" class="screen">
+    <div class="header">
+      <h1>Offline Mode</h1>
+      <p>Downloaded Resources</p>
+    </div>
+    <div class="offline-hero">
+      <div class="icon">📴</div>
+      <h2>Offline Mode Active</h2>
+      <p style="color: var(--text-light); margin-top: 8px; font-size: 14px;">
+        You can access all your downloaded subjects, notes, and saved practice papers without using data.
+      </p>
+    </div>
+    <div class="card">
+      <strong>Available Offline:</strong>
+      <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-light); font-size: 14px;">
+        <li>Biology Form 3 (Complete)</li>
+        <li>Mathematics Form 3 (Partial)</li>
+        <li>Agriculture Past Papers (2022-2023)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== BOTTOM NAVIGATION ========== -->
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="showScreen('home')">
+      <span>🏠</span>
+      Home
+    </button>
+    <button class="nav-item" onclick="showScreen('subjects')">
+      <span>📚</span>
+      Subjects
+    </button>
+    <button class="nav-item" onclick="showScreen('ai-teacher')">
+      <span>🧑‍🏫</span>
+      AI Teacher
+    </button>
+    <button class="nav-item" onclick="showScreen('profile')">
+      <span>👤</span>
+      Profile
+    </button>
+  </div>
+
+</div>
+
+<script>
+  function showScreen(screenId) {
+    // Hide all screens
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => screen.classList.remove('active'));
+
+    // Show target screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+      targetScreen.classList.add('active');
+    }
+
+    // Update bottom navigation active state
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      if (item.getAttribute('onclick')?.includes(`'${screenId}'`)) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+</script>
+
+</body>
+      </html>
