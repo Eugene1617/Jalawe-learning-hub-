@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Jalawe Learning Hub</title>
+  <style>
+    :root {
+      --blue: #1a4b8c;
+      --blue-dark: #0f2d5a;
+      --green: #2e8b57;
+      --green-light: #3cb371;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
+      --chalkboard: #2c3e2d;
+      --chalk: #f0f0e8;
+      --text: #1a1a1a;
+      --text-light: #5a6a7a;
+      --card-radius: 16px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #e8eef5;
+      color: var(--text);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    .phone {
+      max-width: 390px;
+      margin: 20px auto;
+      background: var(--white);
+      border-radius: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      min-height: 780px;
+      border: 8px solid #1a1a1a;
+    }
+
+    /* Status bar simulation */
+    .status-bar {
+      height: 28px;
+      background: var(--blue-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 12px;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      min-height: 720px;
+      padding-bottom: 80px;
+      background: var(--off-white);
+      animation: fadeIn 0.25s ease;
+    }
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .header {
+      background: var(--blue);
+      color: white;
+      padding: 16px 20px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 16px;
+      margin: 12px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      width: 100%;
+    }
+    .btn-primary:hover {
+      background: var(--green-light);
+    }
+    .btn-secondary {
+      background: var(--blue);
+      color: white;
+      width: 100%;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+    }
+
+    /* Progress */
+    .progress-bar {
+      height: 8px;
+      background: #e0e7ef;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 4px;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #e5eaf0;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-light);
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+    }
+    .nav-item.active {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .nav-item span {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    /* Splash */
+    #splash {
+      background: linear-gradient(180deg, #e8f0fa 0%, #ffffff 100%);
+      text-align: center;
+      padding: 60px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 780px;
+    }
+    .logo {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -1px;
+    }
+    .logo span {
+      color: var(--green);
+    }
+    .tagline {
+      font-size: 16px;
+      color: var(--text-light);
+      margin: 12px 0 40px;
+    }
+    .splash-illustration {
+      font-size: 80px;
+      margin-bottom: 30px;
+    }
+
+    /* Home */
+    .welcome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #d0e0f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .form-badge {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 16px;
+      margin-top: 8px;
+    }
+    .quick-card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .quick-card .icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+    .quick-card p {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Subjects */
+    .search-bar {
+      margin: 16px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border: none;
+      border-radius: 12px;
+      background: white;
+      font-size: 15px;
+      box-shadow: var(--shadow);
+    }
+    .search-bar::before {
+      content: "🔍";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-size: 16px;
+    }
+    .subject-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 16px 20px;
+    }
+    .subject-card {
+      background: white;
+      border-radius: 14px;
+      padding: 16px 12px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .subject-card .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .subject-card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .subject-card .meta {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .offline-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: var(--green);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    /* Course Detail */
+    .course-header {
+      background: var(--blue);
+      color: white;
+      padding: 20px;
+      border-radius: 0 0 24px 24px;
+    }
+    .progress-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: conic-gradient(var(--green) 75%, rgba(255,255,255,0.3) 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .topic-list {
+      padding: 8px 16px;
+    }
+    .topic-item {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    /* AI Teacher - Blackboard */
+    #ai-teacher {
+      background: #1a2a1a;
+      padding: 0;
+    }
+    .blackboard {
+      margin: 16px;
+      background: #2c3e2d;
+      border: 12px solid #5d4037;
+      border-radius: 8px;
+      min-height: 420px;
+      padding: 20px;
+      color: var(--chalk);
+      font-family: "Chalkboard SE", "Comic Sans MS", cursive, sans-serif;
+      position: relative;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+    }
+    .blackboard h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .chalk-text {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .chalk-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 18px;
+      background: var(--chalk);
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .ai-input-area {
+      padding: 12px 16px 20px;
+      background: #1a2a1a;
+    }
+    .ai-input {
+      display: flex;
+      gap: 8px;
+      background: #2c3e2d;
+      border-radius: 12px;
+      padding: 8px;
+      border: 1px solid #4a5c4a;
+    }
+    .ai-input input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--chalk);
+      font-size: 15px;
+      padding: 10px;
+      outline: none;
+    }
+    .ai-input input::placeholder {
+      color: #8a9a8a;
+    }
+    .ai-btn {
+      background: #4a5c4a;
+      border: none;
+      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Profile */
+    .profile-header {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--blue);
+      color: white;
+      border-radius: 0 0 24px 24px;
+    }
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #d0e0f5;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      border: 3px solid white;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-around;
+      padding: 16px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat .num {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .stat .label {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Offline Screen */
+    .offline-hero {
+      text-align: center;
+      padding: 40px 24px 20px;
+    }
+    .offline-hero .icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    /* Quiz Option Styling */
+    .quiz-option {
+      background: var(--white);
+      border: 2px solid #e0e7ef;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .quiz-option:hover {
+      border-color: var(--blue);
+    }
+
+    /* Utility */
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 20px 16px 8px;
+      color: var(--text);
+    }
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="status-bar">
+    <span>9:41</span>
+    <span>📶 🔋</span>
+  </div>
+
+  <!-- ========== SPLASH ========== -->
+  <div id="splash" class="screen active">
+    <div class="splash-illustration">📚✨</div>
+    <div class="logo">Jalawe <span>Learning Hub</span></div>
+    <div class="tagline">Learn. Grow. Anywhere.</div>
+    <p style="color:#5a6a7a; font-size:14px; max-width:280px; margin-bottom:40px;">
+      A digital classroom for every secondary school student — even offline.
+    </p>
+    <button class="btn btn-primary" style="max-width:240px;" onclick="showScreen('home')">
+      Get Started
+    </button>
+  </div>
+
+  <!-- ========== HOME ========== -->
+  <div id="home" class="screen">
+    <div class="header">
+      <div class="welcome">
+        <div>
+          <h1>Welcome back, Student 👋</h1>
+          <p>Form 3 • Ready to learn</p>
+        </div>
+        <div class="avatar" onclick="showScreen('profile')" style="cursor:pointer;">👨‍🎓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="flex-between">
+        <strong>Continue Learning</strong>
+        <span style="font-size:13px; color:var(--green);">Biology • 75%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:75%;"></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:14px;" onclick="showScreen('course')">
+        Resume Lesson
+      </button>
+    </div>
+
+    <div class="card" style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="showScreen('offline')">
+      <span style="font-size:24px;">📥</span>
+      <div>
+        <strong>Offline Ready</strong>
+        <p style="font-size:13px; color:var(--text-light);">12 lessons downloaded</p>
+      </div>
+    </div>
+
+    <div class="section-title">Recommended Subjects</div>
+    <div style="display:flex; gap:10px; padding:0 16px; overflow-x:auto;">
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">🧬</div>
+        <p style="font-size:13px; font-weight:600;">Biology</p>
+      </div>
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">➗</div>
+        <p style="font-size:13px; font-weight:600;">Mathematics</p>
+      </div>
+      <div class="card" style="min-width:120px; text-align:center; margin:0; cursor:pointer;" onclick="showScreen('course')">
+        <div style="font-size:28px;">⚡</div>
+        <p style="font-size:13px; font-weight:600;">Physics</p>
+      </div>
+    </div>
+
+    <div class="section-title">Quick Access</div>
+    <div class="quick-grid">
+      <div class="quick-card" onclick="showScreen('subjects')">
+        <div class="icon">📚</div>
+        <p>Subjects</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('pastpapers')">
+        <div class="icon">📄</div>
+        <p>Past Papers</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('ai-teacher')">
+        <div class="icon">🧑‍🏫</div>
+        <p>AI Teacher</p>
+      </div>
+      <div class="quick-card" onclick="showScreen('quiz')">
+        <div class="icon">❓</div>
+        <p>Quizzes</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SUBJECTS ========== -->
+  <div id="subjects" class="screen">
+    <div class="header">
+      <h1>Subjects</h1>
+      <p>Form 1 – Form 4 Library</p>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search subjects...">
+    </div>
+    <div class="subject-grid">
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🌱</div>
+        <h3>Agriculture</h3>
+        <div class="meta">Form 1-4 • 15 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:40%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🧬</div>
+        <h3>Biology</h3>
+        <div class="meta">Form 1-4 • 18 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">⚡</div>
+        <h3>Physics</h3>
+        <div class="meta">Form 1-4 • 14 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:30%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">📖</div>
+        <h3>English</h3>
+        <div class="meta">Form 1-4 • 20 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:55%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🇲🇼</div>
+        <h3>Chichewa</h3>
+        <div class="meta">Form 1-4 • 12 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:20%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">➗</div>
+        <h3>Mathematics</h3>
+        <div class="meta">Form 1-4 • 22 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%;"></div></div>
+        <span class="offline-badge">↓ Offline</span>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">📐</div>
+        <h3>Add. Maths</h3>
+        <div class="meta">Form 3-4 • 16 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:15%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">⚗</div>
+        <h3>Chemistry</h3>
+        <div class="meta">Form 1-4 • 17 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:45%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">💼</div>
+        <h3>Business Studies</h3>
+        <div class="meta">Form 1-4 • 14 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:25%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">✝</div>
+        <h3>Bible Knowledge</h3>
+        <div class="meta">Form 1-4 • 10 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:70%;"></div></div>
+      </div>
+      <div class="subject-card" onclick="showScreen('course')">
+        <div class="icon">🇫🇷</div>
+        <h3>French</h3>
+        <div class="meta">Form 1-4 • 12 topics</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COURSE / SUBJECT PAGE ========== -->
+  <div id="course" class="screen">
+    <div class="course-header">
+      <div class="flex-between">
+        <div>
+          <h1>Biology</h1>
+          <p>Form 3 • 18 Topics</p>
+        </div>
+        <div class="progress-circle">75%</div>
+      </div>
+    </div>
+
+    <div class="section-title">Topics & Lessons</div>
+    <div class="topic-list">
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>1. Cell Structure</span>
+        <span style="color:var(--green);">✓</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>2. Photosynthesis</span>
+        <span style="color:var(--green);">✓</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>3. Respiration</span>
+        <span style="color:var(--text-light);">→</span>
+      </div>
+      <div class="topic-item" onclick="showScreen('lesson')">
+        <span>4. Ecology</span>
+        <span style="color:var(--text-light);">→</span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; padding:8px 16px;">
+      <button class="btn btn-outline" style="flex:1;">📝 Notes</button>
+      <button class="btn btn-outline" style="flex:1;">🎥 Videos</button>
+      <button class="btn btn-outline" style="flex:1;" onclick="showScreen('pastpapers')">📄 Papers</button>
+    </div>
+
+    <div style="padding:16px;">
+      <button class="btn btn-secondary" style="margin-bottom:10px;">
+        📥 Download for Offline
+      </button>
+      <button class="btn btn-primary" onclick="showScreen('lesson')">
+        Start Learning
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== LESSON ========== -->
+  <div id="lesson" class="screen">
+    <div class="header">
+      <h1>Photosynthesis</h1>
+      <p>Biology • Lesson 2 of 18</p>
+    </div>
+
+    <div class="card" style="text-align:center; padding:30px;">
+      <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+      <p style="font-weight:600;">Video Lesson</p>
+      <p style="font-size:13px; color:var(--text-light);">8:42 min • Offline available</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:10px;">Key Notes</h3>
+      <p style="font-size:14px; color:var(--text-light);">
+        Photosynthesis is the process by which green plants use sunlight, water and carbon dioxide to produce glucose and oxygen.
+      </p>
+      <p style="font-size:14px; margin-top:10px;">
+        <strong>Equation:</strong><br>
+        6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
+      </p>
+    </div>
+
+    <div style="display:flex; gap:10px; padding:16px;">
+      <button class="btn btn-outline" style="flex:1;">← Previous</button>
+      <button class="btn btn-primary" style="flex:1;">Next →</button>
+    </div>
+    <div style="padding:0 16px 20px; display:flex; gap:10px;">
+      <button class="btn btn-outline" style="flex:1;">🔖 Bookmark</button>
+      <button class="btn btn-secondary" style="flex:1;" onclick="showScreen('quiz')">Take Quiz</button>
+    </div>
+  </div>
+
+  <!-- ========== AI TEACHER ========== -->
+  <div id="ai-teacher" class="screen">
+    <div class="header" style="border-radius: 0;">
+      <h1>AI Classroom Teacher</h1>
+      <p>Interactive Blackboard Assistance</p>
+    </div>
+    <div class="blackboard">
+      <h2>Welcome Class! 📝</h2>
+      <div class="chalk-text">
+        Hello! I am your Jalawe AI Assistant. Ask me any question on Biology, Mathematics, Chemistry, or Agriculture!
+      </div>
+      <div class="chalk-text" style="color: #aed581;">
+        > Ready to solve MSCE practice problems together. <span class="chalk-cursor"></span>
+      </div>
+    </div>
+    <div class="ai-input-area">
+      <div class="ai-input">
+        <input type="text" placeholder="Type your question here...">
+        <button class="ai-btn">➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PAST PAPERS ========== -->
+  <div id="pastpapers" class="screen">
+    <div class="header">
+      <h1>MSCE Past Papers</h1>
+      <p>Practice with real exam questions</p>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Biology Paper 1 (2023)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">100 Marks • 2 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Mathematics Paper 2 (2023)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">100 Marks • 2.5 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div>
+          <h3>Agriculture Paper 1 (2022)</h3>
+          <p style="font-size: 12px; color: var(--text-light);">80 Marks • 2 Hours</p>
+        </div>
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== QUIZ ========== -->
+  <div id="quiz" class="screen">
+    <div class="header">
+      <h1>Biology Quiz</h1>
+      <p>Topic: Photosynthesis</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <p style="font-size: 13px; color: var(--green); font-weight: 700; margin-bottom: 6px;">Question 1 of 5</p>
+      <h3 style="margin-bottom: 16px;">What is the main byproduct of photosynthesis released into the air?</h3>
+      <div class="quiz-option">A. Carbon Dioxide</div>
+      <div class="quiz-option" style="border-color: var(--green); background: #e8f5e9;">B. Oxygen ✓</div>
+      <div class="quiz-option">C. Glucose</div>
+      <div class="quiz-option">D. Nitrogen</div>
+    </div>
+    <div style="padding: 16px;">
+      <button class="btn btn-primary" onclick="showScreen('lesson')">Submit Answer</button>
+    </div>
+  </div>
+
+  <!-- ========== PROFILE ========== -->
+  <div id="profile" class="screen">
+    <div class="profile-header">
+      <div class="profile-avatar">👨‍🎓</div>
+      <h2>Chifundo Banda</h2>
+      <p style="font-size: 13px; opacity: 0.9;">Form 3 Student • St. John's Secondary</p>
+    </div>
+    <div class="stat-row card">
+      <div class="stat">
+        <div class="num">12</div>
+        <div class="label">Completed</div>
+      </div>
+      <div class="stat">
+        <div class="num">85%</div>
+        <div class="label">Avg Score</div>
+      </div>
+      <div class="stat">
+        <div class="num">5d</div>
+        <div class="label">Streak</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Settings</h3>
+      <p style="font-size: 14px; color: var(--text-light); margin-top: 8px;">Offline Data Management</p>
+      <p style="font-size: 14px; color: var(--text-light); margin-top: 8px;">Language: English / Chichewa</p>
+    </div>
+  </div>
+
+  <!-- ========== OFFLINE ========== -->
+  <div id="offline" class="screen">
+    <div class="header">
+      <h1>Offline Mode</h1>
+      <p>Downloaded Resources</p>
+    </div>
+    <div class="offline-hero">
+      <div class="icon">📴</div>
+      <h2>Offline Mode Active</h2>
+      <p style="color: var(--text-light); margin-top: 8px; font-size: 14px;">
+        You can access all your downloaded subjects, notes, and saved practice papers without using data.
+      </p>
+    </div>
+    <div class="card">
+      <strong>Available Offline:</strong>
+      <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-light); font-size: 14px;">
+        <li>Biology Form 3 (Complete)</li>
+        <li>Mathematics Form 3 (Partial)</li>
+        <li>Agriculture Past Papers (2022-2023)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== BOTTOM NAVIGATION ========== -->
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="showScreen('home')">
+      <span>🏠</span>
+      Home
+    </button>
+    <button class="nav-item" onclick="showScreen('subjects')">
+      <span>📚</span>
+      Subjects
+    </button>
+    <button class="nav-item" onclick="showScreen('ai-teacher')">
+      <span>🧑‍🏫</span>
+      AI Teacher
+    </button>
+    <button class="nav-item" onclick="showScreen('profile')">
+      <span>👤</span>
+      Profile
+    </button>
+  </div>
+
+</div>
+
+<script>
+  function showScreen(screenId) {
+    // Hide all screens
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => screen.classList.remove('active'));
+
+    // Show target screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+      targetScreen.classList.add('active');
+    }
+
+    // Update bottom navigation active state
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      if (item.getAttribute('onclick')?.includes(`'${screenId}'`)) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
