@@ -874,6 +874,846 @@
 </script>
 
 </body>
+          </html>    }
+
+    .phone {
+      width: 390px;
+      min-height: 780px;
+      background: var(--off-white);
+      border-radius: 32px;
+      border: 8px solid #1a1a1a;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Status Bar */
+
+    .status-bar {
+      height: 28px;
+      background: var(--blue-dark);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 12px;
+    }
+
+    /* Main */
+
+    .signin {
+      min-height: 744px;
+      padding: 40px 24px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Logo */
+
+    .logo-box {
+      width: 76px;
+      height: 76px;
+      background: var(--blue);
+      border-radius: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 20px rgba(26,75,140,0.2);
+    }
+
+    .title {
+      text-align: center;
+      color: var(--blue-dark);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .title span {
+      color: var(--green);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-top: 7px;
+      margin-bottom: 28px;
+    }
+
+    /* Form */
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid #dce3eb;
+      border-radius: 12px;
+      background: white;
+      padding: 0 15px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
+    }
+
+    /* Password */
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 50px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 5px;
+      top: 4px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    /* Buttons */
+
+    .primary-btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 4px;
+      border: none;
+      border-radius: 12px;
+      background: var(--green);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-btn:active,
+    .guest-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Divider */
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      color: var(--text-light);
+      font-size: 11px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: #dce3eb;
+      flex: 1;
+    }
+
+    /* Guest */
+
+    .guest-btn {
+      width: 100%;
+      height: 52px;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      background: white;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .guest-note {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 11px;
+      line-height: 1.5;
+      margin: 10px 15px 0;
+    }
+
+    /* Account */
+
+    .account-text {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 13px;
+      margin-top: 22px;
+    }
+
+    .account-text button {
+      border: none;
+      background: transparent;
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Hidden */
+
+    .hidden {
+      display: none;
+    }
+
+    /* Error */
+
+    .error {
+      color: #d93025;
+      font-size: 12px;
+      margin-top: -8px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 430px) {
+
+      body {
+        background: var(--off-white);
+        align-items: flex-start;
+      }
+
+      .phone {
+        width: 100%;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .signin {
+        min-height: calc(100vh - 28px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="phone">
+
+  <!-- STATUS BAR -->
+
+  <div class="status-bar">
+    <span>9:41</span>
+    <span>📶 🔋</span>
+  </div>
+
+
+  <!-- =========================
+       SIGN IN
+  ========================== -->
+
+  <main class="signin" id="signinPage">
+
+    <div class="logo-box">
+      📚
+    </div>
+
+    <h1 class="title">
+      Welcome to <span>Jalawe</span>
+    </h1>
+
+    <p class="subtitle">
+      Learn. Grow. Anywhere.
+    </p>
+
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label for="loginContact">
+          Email or Phone Number
+        </label>
+
+        <input
+          type="text"
+          id="loginContact"
+          placeholder="Enter email or phone number"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="loginPassword">
+          Password
+        </label>
+
+        <div class="password-wrapper">
+
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            id="loginPasswordToggle">
+            👁️
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="primary-btn">
+
+        Sign In
+
+      </button>
+
+    </form>
+
+
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+
+    <a
+      href="home.html"
+      class="guest-btn">
+
+      👤 Continue Without Signing In
+
+    </a>
+
+
+    <p class="guest-note">
+
+      You can access lessons, subjects and
+      practice materials without an account.
+
+    </p>
+
+
+    <p class="account-text">
+
+      Don't have an account?
+
+      <button id="showSignup">
+        Create Account
+      </button>
+
+    </p>
+
+  </main>
+
+
+
+  <!-- =========================
+       CREATE ACCOUNT
+  ========================== -->
+
+  <main class="signin hidden" id="signupPage">
+
+    <div class="logo-box">
+      📚
+    </div>
+
+    <h1 class="title">
+      Create <span>Account</span>
+    </h1>
+
+    <p class="subtitle">
+      Start your learning journey with Jalawe.
+    </p>
+
+
+    <form id="signupForm">
+
+
+      <!-- NAME -->
+
+      <div class="form-group">
+
+        <label for="signupName">
+          Full Name
+        </label>
+
+        <input
+          type="text"
+          id="signupName"
+          placeholder="Enter your full name"
+          required
+        >
+
+      </div>
+
+
+      <!-- EMAIL / PHONE -->
+
+      <div class="form-group">
+
+        <label for="signupContact">
+          Email or Phone Number
+        </label>
+
+        <input
+          type="text"
+          id="signupContact"
+          placeholder="Enter email or phone number"
+          required
+        >
+
+      </div>
+
+
+      <!-- FORM -->
+
+      <div class="form-group">
+
+        <label for="studentForm">
+          School Form
+        </label>
+
+        <select
+          id="studentForm"
+          required>
+
+          <option value="">
+            Select your form
+          </option>
+
+          <option value="Form 1">
+            Form 1
+          </option>
+
+          <option value="Form 2">
+            Form 2
+          </option>
+
+          <option value="Form 3">
+            Form 3
+          </option>
+
+          <option value="Form 4">
+            Form 4
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- SCHOOL -->
+
+      <div class="form-group">
+
+        <label for="school">
+          School
+        </label>
+
+        <input
+          type="text"
+          id="school"
+          placeholder="Enter your school"
+          required
+        >
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="signupPassword">
+          Password
+        </label>
+
+        <div class="password-wrapper">
+
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create a password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            id="signupPasswordToggle">
+
+            👁️
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONFIRM PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        >
+
+      </div>
+
+
+      <p
+        class="error"
+        id="passwordError">
+
+        Passwords do not match.
+
+      </p>
+
+
+      <button
+        type="submit"
+        class="primary-btn">
+
+        Create Account
+
+      </button>
+
+    </form>
+
+
+    <p class="account-text">
+
+      Already have an account?
+
+      <button id="showSignin">
+        Sign In
+      </button>
+
+    </p>
+
+  </main>
+
+</div>
+
+
+
+<script>
+
+  /* =====================================
+     DOM ELEMENTS
+  ===================================== */
+
+  const signinPage =
+    document.getElementById("signinPage");
+
+  const signupPage =
+    document.getElementById("signupPage");
+
+  const showSignup =
+    document.getElementById("showSignup");
+
+  const showSignin =
+    document.getElementById("showSignin");
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  const signupForm =
+    document.getElementById("signupForm");
+
+
+
+  /* =====================================
+     SWITCH TO CREATE ACCOUNT
+  ===================================== */
+
+  showSignup.addEventListener("click", function () {
+
+    signinPage.classList.add("hidden");
+
+    signupPage.classList.remove("hidden");
+
+  });
+
+
+
+  /* =====================================
+     SWITCH BACK TO SIGN IN
+  ===================================== */
+
+  showSignin.addEventListener("click", function () {
+
+    signupPage.classList.add("hidden");
+
+    signinPage.classList.remove("hidden");
+
+  });
+
+
+
+  /* =====================================
+     PASSWORD VISIBILITY
+  ===================================== */
+
+  function setupPasswordToggle(inputId, buttonId) {
+
+    const input =
+      document.getElementById(inputId);
+
+    const button =
+      document.getElementById(buttonId);
+
+
+    button.addEventListener("click", function () {
+
+      if (input.type === "password") {
+
+        input.type = "text";
+
+        button.textContent = "🙈";
+
+      } else {
+
+        input.type = "password";
+
+        button.textContent = "👁️";
+
+      }
+
+    });
+
+  }
+
+
+  setupPasswordToggle(
+    "loginPassword",
+    "loginPasswordToggle"
+  );
+
+
+  setupPasswordToggle(
+    "signupPassword",
+    "signupPasswordToggle"
+  );
+
+
+
+  /* =====================================
+     SIGN IN
+  ===================================== */
+
+  loginForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+
+    const contact =
+      document
+        .getElementById("loginContact")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("loginPassword")
+        .value
+        .trim();
+
+
+    if (!contact || !password) {
+
+      alert("Please enter your login details.");
+
+      return;
+
+    }
+
+
+    /*
+      TEMPORARY LOGIN
+
+      Later connect this to your FastAPI backend.
+
+      Example:
+
+      fetch("YOUR_API/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contact: contact,
+          password: password
+        })
+      })
+    */
+
+
+    alert("Login successful!");
+
+    window.location.href = "home.html";
+
+  });
+
+
+
+  /* =====================================
+     CREATE ACCOUNT
+  ===================================== */
+
+  signupForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+
+    const name =
+      document
+        .getElementById("signupName")
+        .value
+        .trim();
+
+
+    const contact =
+      document
+        .getElementById("signupContact")
+        .value
+        .trim();
+
+
+    const studentForm =
+      document
+        .getElementById("studentForm")
+        .value;
+
+
+    const school =
+      document
+        .getElementById("school")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("signupPassword")
+        .value;
+
+
+    const confirmPassword =
+      document
+        .getElementById("confirmPassword")
+        .value;
+
+
+    const passwordError =
+      document.getElementById("passwordError");
+
+
+    /* Check password */
+
+    if (password !== confirmPassword) {
+
+      passwordError.style.display = "block";
+
+      return;
+
+    }
+
+
+    passwordError.style.display = "none";
+
+
+    /* Basic validation */
+
+    if (
+      !name ||
+      !contact ||
+      !studentForm ||
+      !school ||
+      !password
+    ) {
+
+      alert("Please complete all fields.");
+
+      return;
+
+    }
+
+
+    /*
+      TEMPORARY ACCOUNT CREATION
+
+      Later send this data to FastAPI.
+
+      Example data:
+
+      {
+        name,
+        contact,
+        studentForm,
+        school,
+        password
+      }
+    */
+
+
+    alert(
+      "Account created successfully, " +
+      name +
+      "!"
+    );
+
+
+    window.location.href = "home.html";
+
+  });
+
+</script>
+
+</body>
   </html>    }
 
     /* Phone */
